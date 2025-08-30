@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom shadow-sm fixed-top" 
+     style="padding:6px 12px;">
+  <div class="container-fluid" style="padding:0;">
+
+    <!-- Logo / Brand -->
+    <a class="navbar-brand fw-bold" href="/index" 
+       style="font-size:26px; margin-right:15px; display:flex; align-items:center;">
+      <i class="fa-solid fa-house-user" style="font-size:26px;"></i>
+    </a>
+
+    <!-- Hamburger / Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="gap:12px;">
+      <div class="navbar-nav" style="gap:12px;">
+        <a class="nav-link" href="/index" style="font-size:15px; padding:4px 6px;">Home</a>
+        <a class="nav-link" href="/index/newpost" style="font-size:15px; padding:4px 6px;">Create Post</a>
+      </div>
+
+      <!-- Right Side (Login / Signup / Logout) -->
+      <div class="navbar-nav ms-auto" style="gap:12px;">
+        <% if (!currentUser) { %>
+          <a class="nav-link" href="/login" style="font-size:15px; padding:4px 6px;">
+            <i class="fa-solid fa-right-to-bracket me-1"></i>Login
+          </a>
+          <a class="nav-link" href="/signup" style="font-size:15px; padding:4px 6px;">
+            <i class="fa-solid fa-user-plus me-1"></i>Signup
+          </a>
+        <% } else { %>
+          <a class="nav-link" href="/logout" style="font-size:15px; padding:4px 6px;">
+            <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
+          </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+

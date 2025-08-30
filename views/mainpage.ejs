@@ -1,0 +1,26 @@
+<% layout("/layout/boilerplate") %>
+
+<div class="row" style="margin-top: 100px;"> <!-- Custom margin-top with inline style -->
+       <% for (let datas of data) { %>
+             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card height">
+                           <a href="/index/<%= datas.id %>">
+                                  <img src="<%= datas.image.url %>" class="card-img-top" alt="no image!"
+                                  style="height: 15rem; object-fit: cover;">
+                           </a>
+                           <div class="card-body">
+                                  <h5 class="card-title">
+                                         <%= datas.title %>
+                                  </h5>
+                                  <p class="card-text">
+                                         <%= datas.description %>
+                                  </p>
+                                  <p class="card-text">&#8377;<%= datas.price %></p>
+                           </div>
+                    </div>
+             </div>
+       <% } %>
+    </div>
+    
+    
+

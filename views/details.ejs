@@ -1,0 +1,120 @@
+<% layout("/layout/boilerplate") %>
+
+  <div class="container py-4" style="margin-top: 80px;">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-4">
+        <div class="box text-center">
+          <img
+            src="<%= data.image?.url || 'https://plus.unsplash.com/premium_vector-1721890983082-3992f67f7e6b?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0-3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' %>"
+            alt="Image" class="img-fluid mb-3"
+            style="width: 100%; max-width: 30rem; object-fit: cover; border-radius: 10%;">
+
+
+          <div class="text-start">
+            <!-- <p class="mb-1"><strong>Post By :</strong>
+              <= data.owner.username %>
+              <= data.owner.username %>
+            </p> -->
+            <p class="mb-1"><strong>Post By :</strong>
+              <%= data.owner ? data.owner.username : 'Unknown' %>
+            </p>
+
+            <p class="mb-1"><strong>Title:</strong>
+              <%= data.title %>
+            </p>
+            <p class="mb-1"><strong>Description:</strong>
+              <%= data.description %>
+            </p>
+            <p class="mb-1"><strong>Price:</strong>
+              <%= data.price %>
+            </p>
+            <p class="mb-1"><strong>Location:</strong>
+              <%= data.location %>
+            </p>
+            <p class="mb-1"><strong>Country:</strong>
+              <%= data.country %>
+            </p>
+          </div>
+        </div>
+
+        <!-- // PAHLE HI CHECK KAR LO KI CURRENT USER EXIST KR RHA HII KI NHI [ toString() ISKI JAGH PE HUM EQUELS MEYTHOD BHI LAGA SKTE THE ] . -->
+        <% if (currentUser && data.owner && currentUser.id.toString()===data.owner.id.toString()) { %>
+          <div class="d-flex">
+            <form method="GET" action="/index/<%= data._id %>/detail" class="me-2">
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+
+            <form method="GET" action="/index/<%= data._id %>/deletepost?_method=GET">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+          <% } %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Submit Your Review</h2>
+    <form method="POST" action="/index/<%= data._id %>/review" novalidate class="needs-validation">
+      <fieldset class="starability-coinFlip">
+        <legend>First rating:</legend>
+        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+          aria-label="No rating." />
+        <input type="radio" id="first-rate1" name="rating" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="rating" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="rating" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="rating" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="rating" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+
+      <div class="mb-3">
+        <label for="review" class="form-label">Your Review</label>
+        <textarea class="form-control" id="review" rows="4" placeholder="Write your review here" name="Comment"
+          required></textarea>
+        <div class="invalid-feedback">Please enter a valid Review (only letters allowed)</div>
+      </div>
+
+      <button class="btn btn-primary">Submit Review</button>
+    </form>
+  </div>
+
+
+
+
+  <div class="container my-4">
+    <h4 class="mb-3">User Reviews</h4>
+
+    <% if (data.review.length===0) { %> <!-- AGR KOI Review NHI RHEGA TO US CASE MEA YE DIKHANA HII No reviews yet. -->
+      <p class="text-muted">No reviews yet.</p>
+      <% } %>
+
+        <% for (let review of data.review) { %>
+          <div class="d-flex align-items-start justify-content-between mb-3">
+            <div class="card flex-grow-1 me-3">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-1 text-muted">
+                  <strong>
+                    <%= review.username %>
+                  </strong>
+                  <%= '★' .repeat(review.rating) + '☆' .repeat(5 - review.rating) %>
+                </h6>
+                <p class="card-text mb-0">
+                  <%= review.Comment %>
+                </p>
+              </div>
+            </div>
+
+            <form method="POST" action="/index/<%= data._id %>/review/<%= review.id %>?_method=GET">
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </div>
+          <% } %>
+  </div>

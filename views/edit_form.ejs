@@ -1,0 +1,42 @@
+<% layout("/layout/boilerplate") %>
+
+<form method="POST" action="/index/<%= data._id %>/update?_method=POST" enctype="multipart/form-data">
+  <div class="mb-3" style="margin-top: 100px">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="<%= data.title %>">
+  </div>
+
+  <div class="mb-3">
+    IMAGE
+    <img src="<%= data.image.url %>" alt="Image" style="height: 200px;">
+  </div>
+
+
+  <div class="mb-3">
+    <label for="title" class="form-label">IMAGE</label>
+    <input type="file" class="form-control" id="title" name="image">
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" name="description" value="<%= data.description %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" class="form-control" id="price" name="price" value="<%= data.price %>" >
+  </div>
+
+  <div class="mb-3">
+    <label for="location" class="form-label">Location</label>
+    <input type="text" class="form-control" id="location" name="location" value="<%= data.location %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="country" class="form-label">Country</label>
+    <input type="text" class="form-control" id="country" name="country" value="<%= data.country %>">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

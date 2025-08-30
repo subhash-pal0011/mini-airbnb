@@ -1,0 +1,46 @@
+<% layout("/layout/boilerplate") %>
+
+
+<!-- novalidate class="needs-validation" YE LINE ADD KRNE SE JO LOGIC HII FORM NA FILL KARO JO JS MEA LOGIC LKIHA HII BOOTSTRP KA HII O LOGIC ISPE KAM KAREGA. -->
+<form method="POST" action="/index/newpost/submit" novalidate class="needs-validation" enctype="multipart/form-data"> <!-- file ke liye ye add karna padta hii enctype="multipart/form-data -->
+    <div class="mb-3" style="margin-top: 100px">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" id="title" required>
+        <div class="invalid-feedback">Please enter a valid title (only letters allowed)</div>
+    </div>
+  
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" name="description" class="form-control" id="description" required>
+        <div class="invalid-feedback">Please enter a valid description (only letters allowed)</div>
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Image Upload</label>
+        <input type="file" name="mainSchema[image]" class="form-control" id="image" required>
+        <div class="invalid-feedback">Please enter a valid image URL</div>
+    </div>
+  
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" name="price" class="form-control" id="price" required min="0" step="0.01">
+        <div class="invalid-feedback">Please enter a valid price (must be a positive number)</div>
+    </div>
+  
+    <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" name="location" class="form-control" id="location" required>
+        <div class="invalid-feedback">Please enter a valid location (only letters allowed)</div>
+    </div>
+  
+    <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input type="text" name="country" class="form-control" id="country" required>
+        <div class="invalid-feedback">Please enter a valid country (only letters allowed)</div>
+    </div>
+  
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+  
+
+ 
+  
